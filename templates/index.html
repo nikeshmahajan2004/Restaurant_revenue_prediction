@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Restaurant Revenue Prediction</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="header">
+            <h1>Restaurant Revenue Prediction</h1>
+
+            <p>
+                Enter restaurant details to predict the estimated revenue.
+            </p>
+        </div>
+
+
+        <form action="/predict_data" method="POST">
+
+            <div class="form-grid">
+
+
+                <!-- Location -->
+                <div class="form-group">
+
+                    <label for="Location">Location</label>
+
+                    <select
+                        id="Location"
+                        name="Location"
+                        required
+                    >
+
+                        <option value="">
+                            Select Location
+                        </option>
+
+                        <option value="Downtown">
+                            Downtown
+                        </option>
+
+                        <option value="Rural">
+                            Rural
+                        </option>
+
+                        <option value="Suburban">
+                            Suburban
+                        </option>
+                    </select>
+
+                </div>
+
+
+                <!-- Cuisine -->
+                <div class="form-group">
+
+                    <label for="Cuisine">Cuisine</label>
+
+                    <select
+                        id="Cuisine"
+                        name="Cuisine"
+                        required
+                    >
+
+                        <option value="">
+                            Select Cuisine
+                        </option>
+
+                        <option value="Japanese">
+                            Japanese
+                        </option>
+
+                        <option value="Mexican">
+                            Mexican
+                        </option>
+
+                        <option value="Italian">
+                            Italian
+                        </option>
+
+                        <option value="Indian">
+                            Indian
+                        </option>
+
+                        <option value="American">
+                            American
+                        </option>
+
+                        <option value="French">
+                            French
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- Rating -->
+                <div class="form-group">
+
+                    <label for="Rating">
+                        Rating
+                    </label>
+
+                    <input
+                        type="number"
+                        id="Rating"
+                        name="Rating"
+                        step="0.1"
+                        min="0"
+                        max="5"
+                        placeholder="Example: 4.5"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- Seating Capacity -->
+                <div class="form-group">
+
+                    <label for="Seating_Capacity">
+                        Seating Capacity
+                    </label>
+
+                    <input
+                        type="number"
+                        id="Seating_Capacity"
+                        name="Seating_Capacity"
+                        min="0"
+                        placeholder="Example: 100"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- Average Meal Price -->
+                <div class="form-group">
+
+                    <label for="Average_Meal_Price">
+                        Average Meal Price
+                    </label>
+
+                    <input
+                        type="number"
+                        id="Average_Meal_Price"
+                        name="Average_Meal_Price"
+                        step="0.01"
+                        min="0"
+                        placeholder="Example: 500"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- Marketing Budget -->
+                <div class="form-group">
+
+                    <label for="Marketing_Budget">
+                        Marketing Budget
+                    </label>
+
+                    <input
+                        type="number"
+                        id="Marketing_Budget"
+                        name="Marketing_Budget"
+                        min="0"
+                        placeholder="Example: 20000"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- Social Media Followers -->
+                <div class="form-group">
+
+                    <label for="Social_Media_Followers">
+                        Social Media Followers
+                    </label>
+
+                    <input
+                        type="number"
+                        id="Social_Media_Followers"
+                        name="Social_Media_Followers"
+                        min="0"
+                        placeholder="Example: 10000"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- Chef Experience Years -->
+                <div class="form-group">
+
+                    <label for="Chef_Experience_Years">
+                        Chef Experience Years
+                    </label>
+
+                    <input
+                        type="number"
+                        id="Chef_Experience_Years"
+                        name="Chef_Experience_Years"
+                        min="0"
+                        max="50"
+                        placeholder="0 - 50 years"
+                        required
+                    >
+
+                    <small>
+                        Maximum 50 years
+                    </small>
+
+                </div>
+
+
+                <!-- Number of Reviews -->
+                <div class="form-group">
+
+                    <label for="Number_of_Reviews">
+                        Number of Reviews
+                    </label>
+
+                    <input
+                        type="number"
+                        id="Number_of_Reviews"
+                        name="Number_of_Reviews"
+                        min="0"
+                        placeholder="Example: 500"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- Average Review Length -->
+                <div class="form-group">
+
+                    <label for="Avg_Review_Length">
+                        Average Review Length
+                    </label>
+
+                    <input
+                        type="number"
+                        id="Avg_Review_Length"
+                        name="Avg_Review_Length"
+                        step="0.01"
+                        min="0"
+                        placeholder="Example: 150"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- Ambience Score -->
+                <div class="form-group">
+
+                    <label for="Ambience_Score">
+                        Ambience Score
+                    </label>
+
+                    <input
+                        type="number"
+                        id="Ambience_Score"
+                        name="Ambience_Score"
+                        step="0.1"
+                        min="0"
+                        max="10"
+                        placeholder="0 - 10"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- Service Quality Score -->
+                <div class="form-group">
+
+                    <label for="Service_Quality_Score">
+                        Service Quality Score
+                    </label>
+
+                    <input
+                        type="number"
+                        id="Service_Quality_Score"
+                        name="Service_Quality_Score"
+                        step="0.1"
+                        min="0"
+                        max="10"
+                        placeholder="0 - 10"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- Parking Availability -->
+                <div class="form-group">
+
+                    <label for="Parking_Availability">
+                        Parking Availability
+                    </label>
+
+                    <select
+                        id="Parking_Availability"
+                        name="Parking_Availability"
+                        required
+                    >
+
+                        <option value="">
+                            Select Parking Availability
+                        </option>
+
+                        <option value="Yes">
+                            Yes
+                        </option>
+
+                        <option value="No">
+                            No
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- Weekend Reservations -->
+                <div class="form-group">
+
+                    <label for="Weekend_Reservations">
+                        Weekend Reservations
+                    </label>
+
+                    <input
+                        type="number"
+                        id="Weekend_Reservations"
+                        name="Weekend_Reservations"
+                        min="0"
+                        placeholder="Example: 50"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- Weekday Reservations -->
+                <div class="form-group">
+
+                    <label for="Weekday_Reservations">
+                        Weekday Reservations
+                    </label>
+
+                    <input
+                        type="number"
+                        id="Weekday_Reservations"
+                        name="Weekday_Reservations"
+                        min="0"
+                        placeholder="Example: 30"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+
+            <!-- Submit Button -->
+            <button type="submit">
+                Predict Revenue
+            </button>
+
+        </form>
+
+
+        <!-- Prediction Result -->
+        {% if result is not none %}
+
+        <div class="result">
+
+            <h2>
+                Predicted Restaurant Revenue
+            </h2>
+
+            <p class="prediction">
+                ₹ {{ result }}
+            </p>
+
+        </div>
+
+        {% endif %}
+
+
+    </div>
+
+</body>
+
+</html>
